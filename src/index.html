@@ -1,12 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <title>Arcoiris</title>
 </head>
+
 <body>
-  <script type="module" src="main.js"></script>
+    <div class="imagen col-xs-12 col-lg-6 f-l">
+      <img class="col-xs-12"
+        src="http://4.bp.blogspot.com/-84IgIIXJJR4/UUsg2k2K4dI/AAAAAAAAHI8/Hr8q3iP9pBw/s1600/S%C3%ADndrome+de+Down+(eligelavida).jpg"
+        alt="La discapacidad no te impide que seas feliz, todos podemos ser felices.">
+    </div>
+    <div class="contenedor-form col-xs-12 col-lg-6 f-l">
+      <div class="toggle">
+        <h1>&#171;Bienvenid@ a Arcoiris&#187;</h1>
+        <p>Quiereme Como Soy</p>
+      </div>
+      <div class="formulario">
+        <h2>Iniciar Sesion</h2>
+        <form action="#">
+          <input id="email" type="email" placeholder="email" required>
+          <input type="password" id="contrasena" placeholder="Contraseña" required>
+          <button id="iniciar-sesion">Iniciar Sesion</button>
+          <div class="icon-facebook-google">
+            <p>O bien ingresa con...</p>
+            <a href="" id="google" target="_blank" class="icon icon-google">
+              <img alt="Registrate con Google"
+                src="https://3.bp.blogspot.com/-rZLDbfQdt4A/XCrIyYkW_XI/AAAAAAAAH_c/65QvUQJnv-oFNFS_aA3IDS57L_QPZbWfQCLcBGAs/s1600/google-plus.png"
+                title="Registrate con Google" class="icon-google" /></a>
+            <div class="registrate">
+              <p>¿No tienes una cuenta?</p>
+              <a href="#">Registrate Aqui</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+<!-- El núcleo de Firebase JS SDK siempre es necesario y debe aparecer primero -->
+<script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-auth.js"></script>
+ <!--<script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-firestore.js"></script>-->
+<!-- TODO: Agrega SDK para los productos Firebase que quieras usar
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+<script>
+  // Configuración de Firebase de su aplicación web
+  var firebaseConfig = {
+    apiKey: "AIzaSyBI_qBSPS4R8aAy8OajudvOT_WeM4OsjHs",
+    authDomain: "social-network-2c338.firebaseapp.com",
+    databaseURL: "https://social-network-2c338.firebaseio.com",
+    projectId: "social-network-2c338",
+    storageBucket: "social-network-2c338.appspot.com",
+    messagingSenderId: "346294194989",
+    appId: "1:346294194989:web:51fa397c96b901db"
+  };
+  // Inicializar Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+ 
+  <script type="module" src="lib/index.js">
+  </script>
 </body>
+
 </html>
