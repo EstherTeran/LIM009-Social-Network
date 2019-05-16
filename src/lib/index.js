@@ -59,6 +59,34 @@ google.addEventListener("click", () => {
   });
 })
 
+const facebook = document.getElementById("facebook");
+facebook.addEventListener("click", () => {
+const provider = new firebase.auth.FacebookAuthProvider();
+  firebase.auth().signInWithPopup(provider)
+  .then((result) => {
+  // Esto le da un token de acceso de Facebook. Puedes usarlo para acceder a la API de Facebook.
+  const token = result.credential.accessToken;
+  // La información de usuario que ha iniciado sesión.
+  const user = result.user;
+  console.log(result.user);
+  // ...
+}).catch((error) => {
+  // Manejar los errores aquí.
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  console.log(errorMessage);
+    // El correo electrónico de la cuenta del usuario utilizado.
+  const email = error.email;
+  // El tipo firebase.auth.AuthCredential que se usó.
+  const credential = error.credential;
+  // ...
+});
+firebase.auth().signInWithRedirect(provider);
+FB.getLoginStatus((response)  => {
+  statusChangeCallback(response);
+  console.log(response);
+});
+})
 
 
 

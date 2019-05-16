@@ -1,0 +1,116 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: cursive;
+    box-sizing: border-box;
+}
+.imagen-nino-con-burbujas {
+    width: 100%;
+    position: absolute;
+}
+.contenedor-registro-arcoiris {
+  float: right;
+  text-align: center;
+}
+.registro-form {
+  text-align: -webkit-center;
+  width: 40%;
+  height: 40%;
+}
+input {
+  display: block;
+  margin: 1%;
+  padding: 1%;
+  text-align: center;
+  background: #FBEEE6;
+}
+.btn-registrarme {
+  margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
+  background: #C39BD3;
+}
+@media(min-width: 360px) {
+  .col-xs-12 {
+     width: 100%;
+  }
+  .imagen-nino-con-burbujas {
+    width: 100%;
+    position: none;
+}
+  .contenedor-registro-arcoiris {
+    float: none;
+    margin-top: none;
+    text-align: center;
+    position: none;
+    margin-right: none;
+  }
+}
+@media(min-width: 700px) {
+  .col-xs-12 {
+     width: 100%;
+  }
+  .imagen-nino-con-burbujas {
+    width: 100%;
+    overflow: auto;
+    position: absolute;
+}
+  .contenedor-registro-arcoiris {
+    margin-top: 50px;
+    text-align: center;
+    position: relative;
+    margin-right: 550px;
+  }
+}
+@media(min-width: 1200px) {
+  .col-xs-12 {
+     width: 100%;
+  }
+  .imagen-nino-con-burbujas {
+    width: 100%;
+    overflow: auto;
+    position: absolute;
+}
+  .contenedor-registro-arcoiris {
+    margin-top: 50px;
+    text-align: center;
+    position: relative;
+    margin-right: 590px;
+  }
+}
+.col-xs-1 {
+    width: 8.33% !important;
+  }
+  .col-xs-2 {
+    width: 16.66% !important;
+  }
+  .col-xs-3 {
+    width: 25% !important;
+  }
+  .col-xs-4 {
+    width: 33,33% !important;
+  }
+  .col-xs-5 {
+    width: 41,66% !important;
+  }
+  .col-xs-6 {
+    width: 50% !important;
+  }
+  .col-xs-7 {
+    width: 58,33% !important;
+  }
+  .col-xs-8 {
+    width: 66,66% !important;
+  }
+  .col-xs-9 {
+    width: 75% !important;
+  }
+  .col-xs-10 {
+    width: 83,33% !important;
+  }
+  .col-xs-11 {
+    width: 91,66% !important;
+  }
+  .col-xs-12 {
+    width: 100% !important;
+  }
