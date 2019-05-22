@@ -4,11 +4,9 @@
     box-sizing: border-box;
     font-family: cursive ;
 }
-.contenedor-img-arcoiris {
-  text-align: center;
-  margin-top: 10%;
-  padding-bottom: 5%;
-  background-color: #935116;
+.img-arcoiris2 {
+  width: 20%;
+  height: 10%;;
 }
 .img-bebes-arco {
   width: 126%;
