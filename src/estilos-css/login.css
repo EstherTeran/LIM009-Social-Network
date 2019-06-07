@@ -90,6 +90,10 @@ h2 {
   padding-bottom: 2%;
 }
 }
+#contenedorErrores {
+  background: red;
+  color: aliceblue;
+}
 @media (min-width: 414px) {
   .col-xs-12 {
     width: 100% !important;

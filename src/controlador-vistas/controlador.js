@@ -1,16 +1,31 @@
 import { componentes } from "../lib/vistas/exportando.js"
-const changeVistas = (route) => {
+import { userExisting, userCorrect } from "./funciones.js"
+import {funcionCerrarSesion} from "./funcionesfirebase.js"
 
+ const changeVistas = (route) => {
     const contenedor = document.getElementById("contenedor");
     contenedor.innerHTML = "";
     switch (route) {
-        case "#/": { return contenedor.appendChild(componentes.home()) }
-        case "#/registro": { return contenedor.appendChild(componentes.registro()) }
+        case "#/":
+        funcionCerrarSesion();
+        { return contenedor.appendChild(componentes.home()) }
+        
+        case "#/registro": 
+          { return contenedor.appendChild(componentes.registro()) }
+        case "#/iniciosesion" :
+
+        if (userExisting || userCorrect) {
+          
+         {return contenedor.appendChild(componentes.iniciosesion()) }
+        }
+        else {
+          { return contenedor.appendChild(componentes.home()) }
+        }
         default:
-            break;
+        break;
     }
-    console.log(route);
 }
 export { changeVistas };
+
 
 

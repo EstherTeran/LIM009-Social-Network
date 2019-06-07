@@ -1,0 +1,73 @@
+* {
+    margin: 5px;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+#comenta-aqui {
+    padding: 30px; 
+    float: right;
+    width: 500px;
+    margin-right: 15%;
+}
+.contenedor-imagenes {
+    display: flex; 
+    float: right;
+    margin-right: 25%;
+}
+.icono {
+    height: 30px;
+    width: 35px;
+}
+#contenedor-usuario {
+    border: 3px solid black;
+    height: 220px;
+    width: 25%;
+    position: absolute;
+} 
+#contenedor-comentarios {
+    float: right;
+    padding-top: 100px;
+     /* width: 150px; */
+    /* margin-right: 65%; 
+    margin-top: 100px; */
+    margin: 0;
+}
+#contenedor-usuario .img-usuario {
+    height: 55%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+#datos-usuarios {
+    height: 45%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: black 2px solid;
+    position: absolute;
+}
+#datos-usuarios p {
+    float: right;
+}
+#foto-usuario {
+    border: black 2px solid;
+    height: 37%;
+    width: 29%;
+    border-radius: 45%;
+}
+.navegador {
+    list-style:none;
+    margin:0;
+	padding:0;
+}
+.navegador li {
+    margin:2px;
+	padding:2px;
+    border:1px solid#CCCCCC;
+    float: right;
+}
+.navegador li a {
+   text-decoration:none;
+}
+

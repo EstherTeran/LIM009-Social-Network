@@ -5,10 +5,8 @@
 //myFunction();
 import { changeVistas } from "./controlador-vistas/controlador.js"
 
-const inicializa = () => {
+ export const inicializa = () => {
     changeVistas(window.location.hash)
     window.addEventListener("hashchange", () => changeVistas(window.location.hash))
 }
 window.addEventListener("load", inicializa);
-
- 

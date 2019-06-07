@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilos-css/login.css">
     <link rel="stylesheet" href="./estilos-css/registro.css">
+    <link rel="stylesheet" href="./estilos-css/iniciosesion.css">
     <title>Arcoiris</title>
 </head>
-
 <body>
     <header>
         <nav>
@@ -22,25 +21,20 @@
         </nav>
     </header>
     <section id="contenedor"></section>
+    <div id="prueba"></div>
     <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-auth.js"></script>
     <script>
-        // Configuración de Firebase de su aplicación web
-        var firebaseConfig = {
-            apiKey: "AIzaSyBI_qBSPS4R8aAy8OajudvOT_WeM4OsjHs",
-            authDomain: "social-network-2c338.firebaseapp.com",
-            databaseURL: "https://social-network-2c338.firebaseio.com",
-            projectId: "social-network-2c338",
-            storageBucket: "social-network-2c338.appspot.com",
-            messagingSenderId: "346294194989",
-            appId: "1:346294194989:web:51fa397c96b901db"
-        };
-        // Inicializar Firebase
-        firebase.initializeApp(firebaseConfig);
+        // Configuración de Firebase de su aplicación web       
+        
     </script>
-    <script src="./lib/index.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
     <script type="module" src="main.js">
     </script>
+    <script type="module" src="./controlador-vistas/funciones.js"></script>
+    <script type="module" src="../src/controlador-vistas/controlador.js"></script>
+
 </body>
 
 </html>
