@@ -15,27 +15,12 @@ const firebaseConfig = () => {
 }
 firebaseConfig()
 
-export const funcionRegistrar = (email2, contrasena2) => {
-  debugger
-  console.log("email", email2)
-  console.log("contrasena2", contrasena2)
-  firebase.auth().createUserWithEmailAndPassword(email2, contrasena2)
-  .then(() => {
-    console.log("then funcion registrar")
-  })
-  .catch(() => {
-    console.log("catch funcion registrar")
-  })
+export const funcionRegistrar = (correo, contrasena) => {
+  return firebase.auth().createUserWithEmailAndPassword(correo, contrasena)
 }
 
-export const funcionLoguear = (email, contrasena) => {
-  firebase.auth().signInWithEmailAndPassword(email, contrasena)
-  .then((user) => {
-    console.log("funciona loguear" , user)
-  })
-.catch((error) => {
-  console.log("catch " , error);
-})
+export const funcionLoguear = (correo, contrasena) => {
+ return firebase.auth().signInWithEmailAndPassword(correo, contrasena)
 }
 
 export const funcionLogeoGoogle = () => {
@@ -44,25 +29,32 @@ export const funcionLogeoGoogle = () => {
 }
 
 export const funcionObservadorUsuarios = () => {
-  firebase.auth().onAuthStateChanged((user) => {
+ return firebase.auth().onAuthStateChanged((user) => {
 if (user) {
-  console.log("El usuario ha iniciado sesión" );
+  console.log("El usuario ha iniciado sesión", user );
 }
 else {
-  console.log("Ningún usuario ha iniciado sesión.");
+  console.log("Ningún usuario ha iniciado sesión." , user);
 }
   })
 }
 
 export const funcionCerrarSesion = () => {
-  firebase.auth().signOut()
+ return firebase.auth().signOut()
 }
 
-export const funcionFirestoreGuardaDatos = () => {
- firebase.firestore().collection(nombreColeccion).doc(id).set(obj);
+export const funcionFirestoreGuardaDatos = (nombreColeccion, id, obj) => {
+return firebase.firestore().collection(nombreColeccion).doc(id).set(obj);
 }
 
+export const traeDatosGuardadosFirestore = (nombreDeColeccion) => {
+  return firebase.firestore().collection(nombreDeColeccion).get()
+}
 
+export const perfilusuario = () => {
+  return  firebase.auth().currentUser
+}
+  
 
 
 

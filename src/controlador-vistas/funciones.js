@@ -1,20 +1,5 @@
 import { funcionRegistrar, funcionLogeoGoogle, funcionObservadorUsuarios, funcionCerrarSesion } from "../controlador-vistas/funcionesfirebase.js"
-import { funcionLoguear, funcionFirestoreGuardaDatos } from "../controlador-vistas/funcionesfirebase.js"
-
-//   const firebaseConfig = () => {
-//    const firebaseConfig = {
-//      apiKey: "AIzaSyBI_qBSPS4R8aAy8OajudvOT_WeM4OsjHs",
-//      authDomain: "social-network-2c338.firebaseapp.com",
-//     databaseURL: "https://social-network-2c338.firebaseio.com",
-//     projectId: "social-network-2c338",
-//     storageBucket: "social-network-2c338.appspot.com",
-//     messagingSenderId: "346294194989",
-//     appId: "1:346294194989:web:51fa397c96b901db"
-//   };
-//     // Inicializar Firebase
-//   firebase.initializeApp(firebaseConfig);
-//  }
-// firebaseConfig()
+import { funcionLoguear, funcionFirestoreGuardaDatos, traeDatosGuardadosFirestore, perfilusuario } from "../controlador-vistas/funcionesfirebase.js"
 
 export const registrarUsuariosNuevos = () => {
   const nombre = document.getElementById("nombre").value;
@@ -22,32 +7,27 @@ export const registrarUsuariosNuevos = () => {
   const email2 = document.getElementById("email2").value;
   const contrasena2 = document.getElementById("contrasena2").value;
   let displayName = nombre + " " + apellido;
-  localStorage.setItem('completeName', displayName);
+  // localStorage.setItem('completeName', displayName);
   let objData = {
     nombreCompleto: displayName,
     correo: email2,
     url: null,
     comentarios: []
   }
-  console.log(localStorage.getItem('completeName'), 'localStorage')
   console.log(email2);
   console.log(contrasena2);
   funcionRegistrar(email2, contrasena2)
     .then((user) => {
+      console.log("entro la funcion de registrar");
+      console.log("user", user);
       funcionFirestoreGuardaDatos("usuarios", email2, objData)
-        // let referenciaDoc = firebase.firestore().collection("usuarios").doc(email2);
-        // referenciaDoc.set({
-        //   nombreCompleto: displayName,
-        //   correo: email2,
-        //   url: null,
-        //   comentarios: []
-        // })
-        .then((docRef) => {
-          console.log(docRef, 'correct')
-          console.log('usuario guardado en firebase')
+        .then(() => {
+          console.log("correct");
+          console.log('usuario guardado en firebase');
+          console.log(localStorage.getItem('completeName'), 'localStorage')
         })
         .catch((err) => {
-          console.log(err, 'no pudo guardarse el usuario en firebase')
+          console.log(err, 'no pudo guardarse el usuario en firebase');
         })
     })
     .catch((error) => {
@@ -60,49 +40,79 @@ export const registrarUsuariosNuevos = () => {
 
 export let userCorrect = false
 
+export const retornaEmailLogeado = () => {
+ const perfil = perfilusuario()
+ const emailPerfil = perfil.email;
+ return emailPerfil;
+}
+
+export const traeDatosYpintaDatos = () => {
+  traeDatosGuardadosFirestore("usuarios")
+  .then((querySnapshot) => {
+    const newMail = retornaEmailLogeado()
+    querySnapshot.forEach((doc ) => {
+      if (doc.id === newMail ) {
+        console.log(doc.data());
+        console.log(doc.data().nombreCompleto);
+        let dataNombreCompleto = doc.data().nombreCompleto;
+        localStorage.setItem('completeName', dataNombreCompleto );
+        const nombresUsuarios = document.querySelector("#nombres-usuarios");
+        nombresUsuarios.innerHTML = doc.data().nombreCompleto;
+      }
+
+    });
+  })
+  const traerComentarios = () => {
+    traeDatosGuardadosFirestore("comentarios")
+    .then((comentarios) => {
+      comentarios.forEach((doc) => {
+        console.log(doc , "documeto cometarios");
+        console.log(comentarios)
+        console.log(doc.data())
+    let divElement = document.createElement("div");
+    divElement.innerHTML = `${doc.data()}`
+    return divElement;
+      })
+    })
+    .catch((error) => {
+      console.log(error , "error catch traer comentarios");
+    })
+  }
+  traerComentarios()
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   console.log(errorCode, "errorrCode");
+  //   console.log("error", error);
+  // })
+}
+
 export const usuariosExistentes = () => {
   const email = document.getElementById("email").value;
   const contrasena = document.getElementById("contrasena").value;
+  
   console.log(email); console.log(contrasena);
   funcionLoguear(email, contrasena)
-  // .then((user) => {
+   .then((user) => { 
   userCorrect = true;
-  firebase.firestore().collection("usuarios").get()
-    .then((querySnapshot) => {
-      console.log(querySnapshot, "querySnapshot")
-      querySnapshot.forEach((doc) => {
-        if (doc.id === email) {
-          console.log(doc.data());
-          console.log(doc.data().nombreCompleto);
-          const nombresUsuarios = document.querySelector("#nombres-usuarios");
-          nombresUsuarios.innerHTML = doc.data().nombreCompleto;
-          console.log("nombresUsuarios", nombresUsuarios)
-        }
-      });
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, "errorrCode");
-      console.log("error", error);
-    })
+  console.log(user , "user")
   console.log(userCorrect, 'userCorrect then');
   window.location.hash = '#/iniciosesion';
-  //  })
-  //  .catch((error) => {
-  //  const errorCode = error.code;
-  //  const errorMessage = error.message;
-  //  console.log(error);
-  //  const contenedorErrores = document.querySelector("#contenedorErrores");
-  //  if (error.code === "auth/user-not-found") {
-  //    let newMensaje = "No hay registro de usuario correspondiente a este identificador.";
-  //    contenedorErrores.innerHTML = newMensaje;
-  //  }
-  //  else if (error.code === "auth/wrong-password") {
-  //    let newMensaje2 = "La contraseña no es válida";
-  //    contenedorErrores.innerHTML = newMensaje2;
-  //  }
-  //  });
+    })
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(error);
+    const contenedorErrores = document.querySelector("#contenedorErrores");
+   if (error.code === "auth/user-not-found") {
+      let newMensaje = "No hay registro de usuario correspondiente a este identificador.";
+      contenedorErrores.innerHTML = newMensaje;
+    }
+    else if (error.code === "auth/wrong-password") {
+      let newMensaje2 = "La contraseña no es válida";
+      contenedorErrores.innerHTML = newMensaje2;
+    }
+    });
 }
 
 export let userExisting = {}
@@ -160,43 +170,32 @@ export const loginGoogle = () => {
 export const cerrarSesion = () => {
   funcionCerrarSesion()
     .then(() => {
-      // Sign-out successful.
       console.log('cerrando sesion')
-
     }).catch((error) => {
-      // An error happened.
       console.log(error, 'error')
     });
 }
+
 export const firestoreAgregaDatos = () => {
   let comentaAqui = document.querySelector("#comenta-aqui");
   let textoGuardado = comentaAqui.value;
   const contenedorComentarios = document.getElementById("contenedor-comentarios");
   document.getElementById("comenta-aqui").value = "";
   const content = document.createElement("div")
-  // let parrafo = document.createElement("p")
   let texto = document.createTextNode(textoGuardado);
   content.appendChild(texto);
   contenedorComentarios.appendChild(content);
   console.log("textoGuardado", textoGuardado);
+  
   firebase.firestore().collection("comentarios").add({
-    status: textoGuardado
+    nombre: localStorage.getItem('completeName'),
+    fecha: new Date,
+    mensajeGuardado: textoGuardado
   })
     .then((docRef) => {
       console.log("Documento escrito con ID: ", docRef.id);
     })
     .catch((error) => {
       console.error("Error al agregar documento: ", error);
-    });
-  // test.firestore.js
-  // console.log(test.firestore.js, "test.firestore.js");
-}
-
-export const firestoreTraeDatos = () => {
-  firebase.firestore().collection("comentarios").get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-      });
     });
 }

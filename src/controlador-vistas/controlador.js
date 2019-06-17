@@ -1,5 +1,5 @@
 import { componentes } from "../lib/vistas/exportando.js"
-import { userExisting, userCorrect } from "./funciones.js"
+import { userExisting, userCorrect, traeDatosYpintaDatos } from "./funciones.js"
 import {funcionCerrarSesion} from "./funcionesfirebase.js"
 
  const changeVistas = (route) => {
@@ -15,7 +15,7 @@ import {funcionCerrarSesion} from "./funcionesfirebase.js"
         case "#/iniciosesion" :
 
         if (userExisting || userCorrect) {
-          
+          traeDatosYpintaDatos()
          {return contenedor.appendChild(componentes.iniciosesion()) }
         }
         else {

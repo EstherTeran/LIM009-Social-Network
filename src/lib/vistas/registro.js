@@ -22,7 +22,7 @@ export default () => {
     divElementRegistro.innerHTML = vistaRegistro;
     const btnRegistro = divElementRegistro.querySelector("#btn-registro");
     btnRegistro.addEventListener("click",  registrarUsuariosNuevos);
-    // btnRegistro.addEventListener("click", cerrarSesion );
+    //btnRegistro.addEventListener("click", cerrarSesion );
       
     return divElementRegistro;
 }
