@@ -59,33 +59,35 @@ export const traeDatosYpintaDatos = () => {
         const nombresUsuarios = document.querySelector("#nombres-usuarios");
         nombresUsuarios.innerHTML = doc.data().nombreCompleto;
       }
-
     });
   })
-  const traerComentarios = () => {
-    traeDatosGuardadosFirestore("comentarios")
-    .then((comentarios) => {
-      comentarios.forEach((doc) => {
-        console.log(doc , "documeto cometarios");
-        console.log(comentarios)
-        console.log(doc.data())
-    let divElement = document.createElement("div");
-    divElement.innerHTML = `${doc.data()}`
-    return divElement;
-      })
-    })
-    .catch((error) => {
-      console.log(error , "error catch traer comentarios");
-    })
-  }
-  traerComentarios()
-  // .catch((error) => {
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   console.log(errorCode, "errorrCode");
-  //   console.log("error", error);
-  // })
+   .catch((error) => {
+     const errorCode = error.code;
+     const errorMessage = error.message;
+     console.log(errorCode, "errorrCode");
+     console.log("error", error);
+   })
 }
+
+export const traerComentarios = () => {
+  let newArrTodosComentarios = [];
+  traeDatosGuardadosFirestore("comentarios")
+  .then((comentarios) => {
+    comentarios.forEach((doc) => {
+    //  newArrTodosComentarios = doc.data().fecha,
+    //   doc.data().nombre,
+    //   doc.data().mensajeGuardado
+      newArrTodosComentarios.push(doc.data());
+    })
+    console.log(newArrTodosComentarios , "newArrTodosComentarios" )
+ return newArrTodosComentarios;
+  })
+  .catch((error) => {
+    console.log(error , "error catch traer comentarios");
+  })
+}
+traerComentarios()
+
 
 export const usuariosExistentes = () => {
   const email = document.getElementById("email").value;

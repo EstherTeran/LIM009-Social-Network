@@ -1,4 +1,5 @@
 import { firestoreAgregaDatos } from "../../controlador-vistas/funciones.js"
+import {traerComentarios} from "../../controlador-vistas/funciones.js"
 export default () => {
     const vistaInicioSesion = `
     <div>
@@ -33,7 +34,9 @@ export default () => {
 </div>
 <div>
 <div id="contenedor-comentarios"></div>
-</div>`
+</div>
+
+`
     const divElementInicioSesion = document.createElement("div")
     divElementInicioSesion.innerHTML = vistaInicioSesion;
     let btnComentar = divElementInicioSesion.querySelector("#btn-comentar");
@@ -42,5 +45,3 @@ export default () => {
     });
     return divElementInicioSesion;
 }
-
-
